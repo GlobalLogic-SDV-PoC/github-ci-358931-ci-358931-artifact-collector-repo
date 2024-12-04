@@ -5,6 +5,7 @@ on:
 jobs:
   static-analysis:
     name: StaticAnalysis
+    environment: staging_environment
     runs-on:
       - ubuntu-latest
 
