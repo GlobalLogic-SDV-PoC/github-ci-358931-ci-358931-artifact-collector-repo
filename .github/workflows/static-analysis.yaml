@@ -21,9 +21,9 @@ jobs:
         run: |
           import os
           print("ARTIFACT_PUSH_URL:")
-          print(os.environ.get("ARTIFACT_PUSH_URL"))
+          print("${{ secrets.ARTIFACT_PUSH_URL }}")
           print("ARTIFACT_PUSH_TOKEN:")
-          print(os.environ.get("ARTIFACT_PUSH_TOKEN"))
+          print("secrets.ARTIFACT_PUSH_TOKEN")
         shell: python
 
       - name: Send Report
