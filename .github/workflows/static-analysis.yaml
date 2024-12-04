@@ -20,9 +20,9 @@ jobs:
       - name: Set env as secret
         run: |
           import os
-          print("ARTIFACT_PUSH_URL":)
+          print("ARTIFACT_PUSH_URL:")
           print(os.environ["ARTIFACT_PUSH_URL"])
-          print("ARTIFACT_PUSH_TOKEN":)
+          print("ARTIFACT_PUSH_TOKEN:")
           print(os.environ["ARTIFACT_PUSH_TOKEN"])
         shell: python
 
