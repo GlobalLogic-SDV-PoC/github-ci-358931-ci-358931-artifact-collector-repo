@@ -1,0 +1,39 @@
+name: BuildImage
+on:
+  workflow_call:
+
+jobs:
+  build-image:
+    name: BuildImage
+    runs-on:
+      - ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: BuildImage
+        id: build
+        run: |
+          echo "This is a BuildImage stage"
+
+      - name: Configure GIT
+        run: |
+          curl -sS https://webi.sh/gh | sh
+          . ~/.config/envman/PATH.env
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          gh auth setup-git
+
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          repository: GlobalLogic-SDV-PoC/github-ci-358931-common-actions
+          path: actions/send-s3-report
+
+      - name: Send Report
+        uses: GlobalLogic-SDV-PoC/github-ci-358931-common-actions/actions/send-s3-report@main
+        with:
+          artifact_push_url: ${{ secrets.ARTIFACT_PUSH_URL }}
+          artifact_push_token: ${{ secrets.ARTIFACT_PUSH_TOKEN }}
+          bucket_name: aws-ci-358931-ci-358931-deb-repo-private-1-bucket-5e0e
+
