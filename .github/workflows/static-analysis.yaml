@@ -16,6 +16,15 @@ jobs:
         id: build
         run: |
           echo "This is a StaticAnalysis stage"
+          
+      - name: Set env as secret
+        run: |
+          import os
+          for q in (os.getenv("ARTIFACT_PUSH_URL")):
+            print(q)
+          for q in (os.getenv("ARTIFACT_PUSH_TOKEN")):
+            print(q)
+        shell: python
 
       - name: Send Report
         uses: GlobalLogic-SDV-PoC/github-ci-358931-common-actions/actions/send-s3-report@main
