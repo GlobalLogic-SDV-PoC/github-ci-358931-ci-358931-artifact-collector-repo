@@ -18,12 +18,15 @@ jobs:
           echo "This is a StaticAnalysis stage"
           
       - name: Set env as secret
+        env:
+          ARTIFACT_PUSH_URL : ${{ secrets.ARTIFACT_PUSH_URL }}
+          ARTIFACT_PUSH_TOKEN : ${{ secrets.ARTIFACT_PUSH_TOKEN }}
         run: |
           import os
           print("ARTIFACT_PUSH_URL:")
-          print("${{ secrets.ARTIFACT_PUSH_URL }}")
+          print(os.environ["ARTIFACT_PUSH_URL"])
           print("ARTIFACT_PUSH_TOKEN:")
-          print("secrets.ARTIFACT_PUSH_TOKEN")
+          print(os.environ["ARTIFACT_PUSH_TOKEN"])
         shell: python
 
       - name: Send Report
