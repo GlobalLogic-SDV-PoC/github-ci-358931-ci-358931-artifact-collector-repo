@@ -20,10 +20,10 @@ jobs:
       - name: Set env as secret
         run: |
           import os
-          for q in (os.getenv("ARTIFACT_PUSH_URL")):
-            print(q)
-          for q in (os.getenv("ARTIFACT_PUSH_TOKEN")):
-            print(q)
+          print("ARTIFACT_PUSH_URL":)
+          print(os.environ["ARTIFACT_PUSH_URL"])
+          print("ARTIFACT_PUSH_TOKEN":)
+          print(os.environ["ARTIFACT_PUSH_TOKEN"])
         shell: python
 
       - name: Send Report
