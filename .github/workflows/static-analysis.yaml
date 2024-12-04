@@ -19,7 +19,7 @@ jobs:
 
       - name: Install requirements
         run: |
-          pip install boto3
+          pip3 install boto3
 
       - name: Send Report
         uses: GlobalLogic-SDV-PoC/github-ci-358931-common-actions/actions/send-s3-report@main
